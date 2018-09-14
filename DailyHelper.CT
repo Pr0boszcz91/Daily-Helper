@@ -10,24 +10,23 @@ total = 0
 function Attach(sender) -- function to Attach the program
 
 function pl() -- get a list of active processes
-local T = {}
-  local SL=createStringlist()
-  getProcesslist(SL)
-   for i=0,strings_getCount(SL)-1 do
-      T[i] = strings_getString(SL,i)
-    end
-  return T
+	local T = {}
+	local SL=createStringlist()
+	getProcesslist(SL)
+	for i=0,strings_getCount(SL)-1 do
+		T[i] = strings_getString(SL,i)
+	end
+	return T
 end
 
 function rp(sender) -- get the process and add it to the list
-  local p = pl()
-  list.Clear()
-  for x = 0, #p do
-        if string.sub(p[x],10) == "MapleStory.exe"
-            then
-            list.Items.Add(p[x])
-            end
-     end
+	local p = pl()
+	list.Clear()
+	for x = 0, #p do
+		if string.sub(p[x],10) == "MapleStory.exe" then
+			list.Items.Add(p[x])
+		end
+	end
 end
 
 function op() -- actually attach now
@@ -72,598 +71,635 @@ rp()
 end
 
 function UpdateLabel()
-control_setCaption(UDF1_LabelCount, counter)
-control_setCaption(UDF1_LabelTotal, total)
+	control_setCaption(UDF1_LabelCount, counter)
+	control_setCaption(UDF1_LabelTotal, total)
 end
 
 function ssReset()
-total = 0
-UpdateLabel()
+	total = 0
+	UpdateLabel()
 end
 
-
+--Teleporting part
 function Teleport(x, y)
-autoAssemble(string.format([[
-define(Xpos,#%s)
-define(Ypos,#%s)
+	autoAssemble(string.format([[
+	define(Xpos,#%s)
+	define(Ypos,#%s)
 
-alloc(Teleport,256)
-label(Teleport_End)
+	alloc(Teleport,256)
+	label(Teleport_End)
 
-CreateThread(Teleport)
+	CreateThread(Teleport)
 
-Teleport:
-mov esi,[03434F54] // CUserLocal: 8B 3D ? ? ? ? 8B CF F3 [address inside brackets]
-lea ecx,[esi+04]
-mov eax,[esi+04]
-mov eax,[eax+20]
-call eax
-test eax,eax
-je Teleport_End
-push Ypos // Y
-push Xpos  // X
-push 00
-mov ecx,eax
-call 00CB7F00 // 55 8B EC ? ? 10 ? FF ? 10 8D ? 10 FF ? 0C 56 FF 50 40 85 C0 79 0C 68 ? ? ? ? ? ? E8 ? ? ? ? 5E [first]
+	Teleport:
+	mov esi,[03434F54] // CUserLocal: 8B 3D ? ? ? ? 8B CF F3 [address inside brackets]
+	lea ecx,[esi+04]
+	mov eax,[esi+04]
+	mov eax,[eax+20]
+	call eax
+	test eax,eax
+	je Teleport_End
+	push Ypos // Y
+	push Xpos  // X
+	push 00
+	mov ecx,eax
+	call 00CB7F00 // 55 8B EC ? ? 10 ? FF ? 10 8D ? 10 FF ? 0C 56 FF 50 40 85 C0 79 0C 68 ? ? ? ? ? ? E8 ? ? ? ? 5E [first]
 
-Teleport_End:
-ret
-]],tostring(x),tostring(y)))
+	Teleport_End:
+	ret
+	]],tostring(x),tostring(y)))
 end
 
+--Teleport buttons ss
 function ssTeleport1()
-Teleport(-1081, -736)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(-1081, -736)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
-
 
 function ssTeleport2()
-Teleport(720, -736)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(720, -736)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleport3()
-Teleport(-1620, -976)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(-1620, -976)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 
 function ssTeleport4()
-Teleport(1342, -976)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(1342, -976)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 
 function ssTeleport5()
-Teleport(-2950, -1576)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(-2950, -1576)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleport6()
-Teleport(2650, -1576)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(2650, -1576)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleport7()
-Teleport(-2176, -1756)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(-2176, -1756)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleport8()
-Teleport(1881, -1756)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(1881, -1756)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleport9()
-Teleport(-1330, -1996)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(-1330, -1996)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleport10()
-Teleport(1072, -1996)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(1072, -1996)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleport11()
-Teleport(-669, -2236)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(-669, -2236)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleport12()
-Teleport(424, -2236)
-counter = counter+1
-total = total+1
-UpdateLabel()
+	Teleport(424, -2236)
+	counter = counter+1
+	total = total+1
+	UpdateLabel()
 end
 
 function ssTeleportBack()
-Teleport(-175, -1100)
-counter = 0
-total = total - 1
-UpdateLabel()
+	Teleport(-175, -1100)
+	counter = 0
+	total = total - 1
+	UpdateLabel()
 end
 
-function sshChangeCaptions(which)
-if which == 1 then
-UDF1.sshBtnBack.Caption = "B"
-UDF1.sshBtnTp1.Caption = "1"
-UDF1.sshBtnTp2.Caption = "2"
-UDF1.sshBtnTp3.Caption = "3"
-UDF1.sshBtnTp4.Caption = "4"
-UDF1.sshBtnTp5.Caption = "5"
-UDF1.sshBtnTp6.Caption = "6"
-UDF1.sshBtnTp7.Caption = "7"
-UDF1.sshBtnTp8.Caption = "8"
-UDF1.sshBtnTp9.Caption = "9"
-UDF1.sshBtnTp10.Caption = "10"
-UDF1.sshBtnTp11.Caption = "11"
-UDF1.sshBtnTp12.Caption = "12"
-elseif which == 0 then
-UDF1.sshBtnBack.Caption = ""
-UDF1.sshBtnTp1.Caption = ""
-UDF1.sshBtnTp2.Caption = ""
-UDF1.sshBtnTp3.Caption = ""
-UDF1.sshBtnTp4.Caption = ""
-UDF1.sshBtnTp5.Caption = ""
-UDF1.sshBtnTp6.Caption = ""
-UDF1.sshBtnTp7.Caption = ""
-UDF1.sshBtnTp8.Caption = ""
-UDF1.sshBtnTp9.Caption = ""
-UDF1.sshBtnTp10.Caption = ""
-UDF1.sshBtnTp11.Caption = ""
-UDF1.sshBtnTp12.Caption = ""
+--Teleport buttons chuchu
+function chuBtnBackClick(sender)
+	Teleport(1400,0)
 end
+
+function chuBtnHoofClick(sender)
+	Teleport(150, -360)
+end
+
+function chuBtnManeClick(sender)
+	Teleport(-920, -360)
+end
+
+function chuBtnFinClick(sender)
+	Teleport(-1130, -850)
+end
+
+function chuBtnPeelClick(sender)
+	Teleport(2650, -350)
+end
+
+function chuBtnPawClick(sender)
+	Teleport(3770, -350)
+end
+
+function chuBtnShellClick(sender)
+	Teleport(3900, -850)
+end
+
+function chuBtnFeatherClick(sender)
+	Teleport(1420, -800)
+end
+
+function chuBtnClawClick(sender)
+	Teleport(1420, -1640)
+end
+
+--Teleport buttons dd
+function ddBtnCenterClick(sender)
+	Teleport(815, -460)
+end
+
+function ddBtnTopClick(sender)
+	Teleport(800, -1970)
+end
+
+function ddBtnRightClick(sender)
+	Teleport(3060, -240)
+end
+
+function ddBtnBottomClick(sender)
+	Teleport(845, 1480)
+end
+
+function ddBtnLeftClick(sender)
+	Teleport(-1455, -240)
+end
+--Teleport end
+
+--Settings
+function sshChangeCaptions(which)
+	if which == 1 then
+		UDF1.sshBtnBack.Caption = "B"
+		UDF1.sshBtnTp1.Caption = "1"
+		UDF1.sshBtnTp2.Caption = "2"
+		UDF1.sshBtnTp3.Caption = "3"
+		UDF1.sshBtnTp4.Caption = "4"
+		UDF1.sshBtnTp5.Caption = "5"
+		UDF1.sshBtnTp6.Caption = "6"
+		UDF1.sshBtnTp7.Caption = "7"
+		UDF1.sshBtnTp8.Caption = "8"
+		UDF1.sshBtnTp9.Caption = "9"
+		UDF1.sshBtnTp10.Caption = "10"
+		UDF1.sshBtnTp11.Caption = "11"
+		UDF1.sshBtnTp12.Caption = "12"
+	elseif which == 0 then
+		UDF1.sshBtnBack.Caption = ""
+		UDF1.sshBtnTp1.Caption = ""
+		UDF1.sshBtnTp2.Caption = ""
+		UDF1.sshBtnTp3.Caption = ""
+		UDF1.sshBtnTp4.Caption = ""
+		UDF1.sshBtnTp5.Caption = ""
+		UDF1.sshBtnTp6.Caption = ""
+		UDF1.sshBtnTp7.Caption = ""
+		UDF1.sshBtnTp8.Caption = ""
+		UDF1.sshBtnTp9.Caption = ""
+		UDF1.sshBtnTp10.Caption = ""
+		UDF1.sshBtnTp11.Caption = ""
+		UDF1.sshBtnTp12.Caption = ""
+	end
 end
 function chuImagesToggle(which)
-if which == 1 then
-UDF1.chuBtnFeatherImg.Visible=false
-UDF1.chuBtnClawImg.Visible=false
-UDF1.chuBtnFinImg.Visible=false
-UDF1.chuBtnManeImg.Visible=false
-UDF1.chuBtnHoofImg.Visible=false
-UDF1.chuBtnShellImg.Visible=false
-UDF1.chuBtnPawImg.Visible=false
-UDF1.chuBtnPeelImg.Visible=false
-UDF1.chuBtnBack.Caption =""
-elseif which == 0 then
-UDF1.chuBtnFeatherImg.Visible=true
-UDF1.chuBtnClawImg.Visible=true
-UDF1.chuBtnFinImg.Visible=true
-UDF1.chuBtnManeImg.Visible=true
-UDF1.chuBtnHoofImg.Visible=true
-UDF1.chuBtnShellImg.Visible=true
-UDF1.chuBtnPawImg.Visible=true
-UDF1.chuBtnPeelImg.Visible=true
-UDF1.chuBtnBack.Caption ="B"
+	if which == 1 then
+		UDF1.chuBtnFeatherImg.Visible=false
+		UDF1.chuBtnClawImg.Visible=false
+		UDF1.chuBtnFinImg.Visible=false
+		UDF1.chuBtnManeImg.Visible=false
+		UDF1.chuBtnHoofImg.Visible=false
+		UDF1.chuBtnShellImg.Visible=false
+		UDF1.chuBtnPawImg.Visible=false
+		UDF1.chuBtnPeelImg.Visible=false
+		UDF1.chuBtnBack.Caption =""
+	elseif which == 0 then
+		UDF1.chuBtnFeatherImg.Visible=true
+		UDF1.chuBtnClawImg.Visible=true
+		UDF1.chuBtnFinImg.Visible=true
+		UDF1.chuBtnManeImg.Visible=true
+		UDF1.chuBtnHoofImg.Visible=true
+		UDF1.chuBtnShellImg.Visible=true
+		UDF1.chuBtnPawImg.Visible=true
+		UDF1.chuBtnPeelImg.Visible=true
+		UDF1.chuBtnBack.Caption ="B"
+	end
 end
-end
+
 function sshSet1Change(sender)
-sshChangeCaptions(sender.State)
+	sshChangeCaptions(sender.State)
 end
+
 function sshSet2Change(sender)
-if sender.State == 1 then
-autoAssemble([[
-alloc(MobControl,128)
+	if sender.State == 1 then
+		autoAssemble([[
+		alloc(MobControl,128)
 
-MobControl:
-mov [edi+000004D0],01 // 01 for Normal
-mov eax,[edi+000004D0]
-jmp 026AC967+6
+		MobControl:
+		mov [edi+000004D0],01 // 01 for Normal
+		mov eax,[edi+000004D0]
+		jmp 026AC967+6
 
-026AC967:
-jmp MobControl
-db 90
-]])
-UDF1.sshStatusLabel.Caption="No Follow: Enabled"
-UDF1.sshStatusLabel.Font.Color=0x00ff00
-elseif sender.State == 0 then
-autoAssemble([[
-026AC967: // CVecCtrlMob::WorkUpdateActive: E9 ? ? ? ? 8B ? ? ? 00 00 83 ? ? 0F ? ? ? ? ? FF [Address below]
-mov eax,[edi+000004D0]
+		026AC967:
+		jmp MobControl
+		db 90
+		]])
+		UDF1.sshStatusLabel.Caption="No Follow: Enabled"
+		UDF1.sshStatusLabel.Font.Color=0x00ff00
+	elseif sender.State == 0 then
+		autoAssemble([[
+		026AC967: // CVecCtrlMob::WorkUpdateActive: E9 ? ? ? ? 8B ? ? ? 00 00 83 ? ? 0F ? ? ? ? ? FF [Address below]
+		mov eax,[edi+000004D0]
 
-dealloc(MobControl)
-]])
-UDF1.sshStatusLabel.Caption="No Follow: Disabled"
-UDF1.sshStatusLabel.Font.Color=0x0000ff
+		dealloc(MobControl)
+		]])
+		UDF1.sshStatusLabel.Caption="No Follow: Disabled"
+		UDF1.sshStatusLabel.Font.Color=0x0000ff
+	end
 end
-end
+
 function sshSet3Change(sender)
 
 end
 
 function chuSet1Change(sender)
-chuImagesToggle(sender.State)
+	chuImagesToggle(sender.State)
 end
+
 function chuSet2Change(sender)
-if sender.State == 1 then
-autoAssemble([[
-alloc(Aggro,128)
-label(return)
+	if sender.State == 1 then
+		autoAssemble([[
+		alloc(Aggro,128)
+		label(return)
 
-Aggro:
-mov eax,[03434F54] // CUserLocal: 8B 3D ? ? ? ?  8B CF F3 ? ? ? 8B ? ? 66 ? ? 45 ? 89 45 EC E8 ? ? ? ? 8B 5D E0 85 C0 74 5C 81 FB ? ? ? ?
-lea eax,[eax+04]
-mov [ecx+000004D0+08],eax // Aggro Offset: 83 BE ? ? ? ? 00 0F 85 ? ? 00 00 8B CE E8 ? ? ? ? 85 C0 74 [Offset+0x08]
+		Aggro:
+		mov eax,[03434F54] // CUserLocal: 8B 3D ? ? ? ?  8B CF F3 ? ? ? 8B ? ? 66 ? ? 45 ? 89 45 EC E8 ? ? ? ? 8B 5D E0 85 C0 74 5C 81 FB ? ? ? ?
+		lea eax,[eax+04]
+		mov [ecx+000004D0+08],eax // Aggro Offset: 83 BE ? ? ? ? 00 0F 85 ? ? 00 00 8B CE E8 ? ? ? ? 85 C0 74 [Offset+0x08]
 
-push ebp
-mov ebp,esp
-push -01
-jmp return
+		push ebp
+		mov ebp,esp
+		push -01
+		jmp return
 
-026A7A50: // CVecCtrlMob::WorkUpdateActive
-jmp Aggro
-return:
-]])
-UDF1.chuStatusLabel.Caption="Auto Aggro: Enabled"
-UDF1.chuStatusLabel.Font.Color=0x00ff00
-elseif sender.State == 0 then
-autoAssemble([[
-026A7A50: //55 8B EC 6A FF 68 ? ? ? ? 64 A1 00 00 00 00 50 83 EC ? 56 57 A1 ? ? ? ? 33 C5 50 8D ? ? 64 A3 00 00 00 00 8B F9 89 ? ? 8B ? FF
-push ebp
-mov ebp,esp
-push -01
+		026A7A50: // CVecCtrlMob::WorkUpdateActive
+		jmp Aggro
+		return:
+		]])
+		UDF1.chuStatusLabel.Caption="Auto Aggro: Enabled"
+		UDF1.chuStatusLabel.Font.Color=0x00ff00
+	elseif sender.State == 0 then
+		autoAssemble([[
+		026A7A50: //55 8B EC 6A FF 68 ? ? ? ? 64 A1 00 00 00 00 50 83 EC ? 56 57 A1 ? ? ? ? 33 C5 50 8D ? ? 64 A3 00 00 00 00 8B F9 89 ? ? 8B ? FF
+		push ebp
+		mov ebp,esp
+		push -01
 
-dealloc(Aggro)
-]])
-UDF1.chuStatusLabel.Caption="Auto Aggro: Disabled"
-UDF1.chuStatusLabel.Font.Color=0x0000ff
+		dealloc(Aggro)
+		]])
+		UDF1.chuStatusLabel.Caption="Auto Aggro: Disabled"
+		UDF1.chuStatusLabel.Font.Color=0x0000ff
+	end
 end
-end
+
 function chuSet3Change(sender)
 
 end
 
 function ddSet1Change(sender)
-if sender.State == 1 then
-UDF1.ddBtnCenter.Caption ="1"
-UDF1.ddBtnTop.Caption ="2"
-UDF1.ddBtnRight.Caption ="3"
-UDF1.ddBtnBottom.Caption ="4"
-UDF1.ddBtnLeft.Caption ="5"
-elseif sender.State == 0 then
-UDF1.ddBtnCenter.Caption =""
-UDF1.ddBtnTop.Caption =""
-UDF1.ddBtnRight.Caption =""
-UDF1.ddBtnBottom.Caption =""
-UDF1.ddBtnLeft.Caption =""
-end
+	if sender.State == 1 then
+		UDF1.ddBtnCenter.Caption ="1"
+		UDF1.ddBtnTop.Caption ="2"
+		UDF1.ddBtnRight.Caption ="3"
+		UDF1.ddBtnBottom.Caption ="4"
+		UDF1.ddBtnLeft.Caption ="5"
+	elseif sender.State == 0 then
+		UDF1.ddBtnCenter.Caption =""
+		UDF1.ddBtnTop.Caption =""
+		UDF1.ddBtnRight.Caption =""
+		UDF1.ddBtnBottom.Caption =""
+		UDF1.ddBtnLeft.Caption =""
+	end
 end
 function ddSet2Change(sender)
-if sender.State == 1 then
-autoAssemble([[
-// E8 ? ? ? ? 89 45 ? 85 F6 0F 85 ? ? ? ? 50
-define(CMobPool__SetLocalMob____CInPacket__Decode4, 0165FD3D)
-define(CInPacket__Decode4, 0080F250) //call of above
-// E8 ? ? ? ? 8B F8 85 FF 74 ? 6A ? 8B CF
-define(CMobPool__OnMobEnterField____CMobPool__GetMob, 0165F490)
-define(CMobPool__GetMob, 0165D4E0) //call of above
+	if sender.State == 1 then
+		autoAssemble([[
+		// E8 ? ? ? ? 89 45 ? 85 F6 0F 85 ? ? ? ? 50
+		define(CMobPool__SetLocalMob____CInPacket__Decode4, 0165FD3D)
+		define(CInPacket__Decode4, 0080F250) //call of above
+		// E8 ? ? ? ? 8B F8 85 FF 74 ? 6A ? 8B CF
+		define(CMobPool__OnMobEnterField____CMobPool__GetMob, 0165F490)
+		define(CMobPool__GetMob, 0165D4E0) //call of above
 
-alloc(BlackListMobs, 1024)
-/////////////////////////////////////////////////
-alloc(ReceiveMob__StoreBlackListMobs, 1024)
-label(CMobPool__SetLocalMobCompareMobs)
-label(CMobPool__SetLocalMobDontSetLocalMob)
-label(CMobPool__SetLocalMob____CInPacket__Decode4__Exit)
-/////////////////////////////////////////////////
-alloc(StoreBlackListMobs, 1024)
-label(CMobPool__OnMobEnterFieldCompareMobs)
-label(CMobPool__OnMobEnterFieldDontLetMobEnterField)
-label(CMobPool__OnMobEnterField____CMobPool__GetMob__Exit)
-/////////////////////////////////////////////////
+		alloc(BlackListMobs, 1024)
+		/////////////////////////////////////////////////
+		alloc(ReceiveMob__StoreBlackListMobs, 1024)
+		label(CMobPool__SetLocalMobCompareMobs)
+		label(CMobPool__SetLocalMobDontSetLocalMob)
+		label(CMobPool__SetLocalMob____CInPacket__Decode4__Exit)
+		/////////////////////////////////////////////////
+		alloc(StoreBlackListMobs, 1024)
+		label(CMobPool__OnMobEnterFieldCompareMobs)
+		label(CMobPool__OnMobEnterFieldDontLetMobEnterField)
+		label(CMobPool__OnMobEnterField____CMobPool__GetMob__Exit)
+		/////////////////////////////////////////////////
 
-BlackListMobs:
-dd #9833090 // Nightmarekeeper
-dd #9833091 // Nightmare Gargoyle
-dd #9833092 // Nightmarekeeper
-dd #9833093 // Nightmare Gargoyle
-dd #9833094 // Nightmarekeeper
-dd #9833095 // Nightmare Gargoyle
-dd #9833096 // Nightmarekeeper
-dd #9833097 // Nightmare Gargoyle
-dd #9833098 // Nightmarekeeper
-dd #9833099 // Nightmare Gargoyle
-dd 00000000
+		BlackListMobs:
+		dd #9833090 // Nightmarekeeper
+		dd #9833091 // Nightmare Gargoyle
+		dd #9833092 // Nightmarekeeper
+		dd #9833093 // Nightmare Gargoyle
+		dd #9833094 // Nightmarekeeper
+		dd #9833095 // Nightmare Gargoyle
+		dd #9833096 // Nightmarekeeper
+		dd #9833097 // Nightmare Gargoyle
+		dd #9833098 // Nightmarekeeper
+		dd #9833099 // Nightmare Gargoyle
+		dd 00000000
 
-/////////////////////////////////////////////////
+		/////////////////////////////////////////////////
 
-CMobPool__SetLocalMob____CInPacket__Decode4:
-jmp ReceiveMob__StoreBlackListMobs
+		CMobPool__SetLocalMob____CInPacket__Decode4:
+		jmp ReceiveMob__StoreBlackListMobs
 
-ReceiveMob__StoreBlackListMobs:
-call CInPacket__Decode4
-push ebx
-mov ebx, BlackListMobs
+		ReceiveMob__StoreBlackListMobs:
+		call CInPacket__Decode4
+		push ebx
+		mov ebx, BlackListMobs
 
-CMobPool__SetLocalMobCompareMobs:
-cmp eax,[ebx]
-je CMobPool__SetLocalMobDontSetLocalMob
-cmp [ebx], 0
-je CMobPool__SetLocalMob____CInPacket__Decode4__Exit
-add ebx, 4
-jmp CMobPool__SetLocalMobCompareMobs
+		CMobPool__SetLocalMobCompareMobs:
+		cmp eax,[ebx]
+		je CMobPool__SetLocalMobDontSetLocalMob
+		cmp [ebx], 0
+		je CMobPool__SetLocalMob____CInPacket__Decode4__Exit
+		add ebx, 4
+		jmp CMobPool__SetLocalMobCompareMobs
 
-CMobPool__SetLocalMobDontSetLocalMob:
-mov ecx, [ebp-0C]
-mov fs:[00000000],ecx
-pop ecx
-pop edi
-pop esi
-pop ebx
-mov esp,ebp
-pop ebp
-ret 0014
+		CMobPool__SetLocalMobDontSetLocalMob:
+		mov ecx, [ebp-0C]
+		mov fs:[00000000],ecx
+		pop ecx
+		pop edi
+		pop esi
+		pop ebx
+		mov esp,ebp
+		pop ebp
+		ret 0014
 
-CMobPool__SetLocalMob____CInPacket__Decode4__Exit:
-pop ebx
-jmp CMobPool__SetLocalMob____CInPacket__Decode4+5
+		CMobPool__SetLocalMob____CInPacket__Decode4__Exit:
+		pop ebx
+		jmp CMobPool__SetLocalMob____CInPacket__Decode4+5
 
-/////////////////////////////////////////////////
+		/////////////////////////////////////////////////
 
-CMobPool__OnMobEnterField____CMobPool__GetMob:
-jmp StoreBlackListMobs
+		CMobPool__OnMobEnterField____CMobPool__GetMob:
+		jmp StoreBlackListMobs
 
-StoreBlackListMobs:
-push ebx
-mov ebx, BlackListMobs
+		StoreBlackListMobs:
+		push ebx
+		mov ebx, BlackListMobs
 
-CMobPool__OnMobEnterFieldCompareMobs:
-cmp eax,[ebx]
-je CMobPool__OnMobEnterFieldDontLetMobEnterField
-cmp [ebx], 0
-je CMobPool__OnMobEnterField____CMobPool__GetMob__Exit
-add ebx, 4
-jmp CMobPool__OnMobEnterFieldCompareMobs
+		CMobPool__OnMobEnterFieldCompareMobs:
+		cmp eax,[ebx]
+		je CMobPool__OnMobEnterFieldDontLetMobEnterField
+		cmp [ebx], 0
+		je CMobPool__OnMobEnterField____CMobPool__GetMob__Exit
+		add ebx, 4
+		jmp CMobPool__OnMobEnterFieldCompareMobs
 
-CMobPool__OnMobEnterFieldDontLetMobEnterField:
-mov ecx, [ebp-0C]
-mov fs:[00000000], ecx
-pop ecx
-pop edi
-pop esi
-pop ebx
-mov esp, ebp
-pop ebp
-ret 0004
+		CMobPool__OnMobEnterFieldDontLetMobEnterField:
+		mov ecx, [ebp-0C]
+		mov fs:[00000000], ecx
+		pop ecx
+		pop edi
+		pop esi
+		pop ebx
+		mov esp, ebp
+		pop ebp
+		ret 0004
 
-CMobPool__OnMobEnterField____CMobPool__GetMob__Exit:
-pop ebx
-call CMobPool__GetMob
-jmp CMobPool__OnMobEnterField____CMobPool__GetMob+5
-]])
-UDF1.ddStatusLabel.Caption="No Spawn: Enabled"
-UDF1.ddStatusLabel.Font.Color=0x00ff00
-elseif sender.State == 0 then
-autoAssemble([[
-0165FD3D:
-call 0080F250
+		CMobPool__OnMobEnterField____CMobPool__GetMob__Exit:
+		pop ebx
+		call CMobPool__GetMob
+		jmp CMobPool__OnMobEnterField____CMobPool__GetMob+5
+		]])
+		UDF1.ddStatusLabel.Caption="No Spawn: Enabled"
+		UDF1.ddStatusLabel.Font.Color=0x00ff00
+	elseif sender.State == 0 then
+		autoAssemble([[
+		0165FD3D:
+		call 0080F250
 
-0165F490:
-call 0165D4E0
+		0165F490:
+		call 0165D4E0
 
-dealloc(ReceiveMobList__StoreBlackListMobs)
-dealloc(StoreBlackListMobs)
-dealloc(BlackListMobs)
-]])
-UDF1.ddStatusLabel.Caption="No Spawn: Disabled"
-UDF1.ddStatusLabel.Font.Color=0x0000ff
+		dealloc(ReceiveMobList__StoreBlackListMobs)
+		dealloc(StoreBlackListMobs)
+		dealloc(BlackListMobs)
+		]])
+		UDF1.ddStatusLabel.Caption="No Spawn: Disabled"
+		UDF1.ddStatusLabel.Font.Color=0x0000ff
+	end
 end
-end
+
 function ddSet3Change(sender)
-if sender.State == 1 then
-autoAssemble([[
-015F3651: //75 ? 8D ? ? 8B ? E8 ? ? ? ? 8B ? E8 ? ? ? ? 85 ? 0F 84 ? ? ? ? 8B
-jmp 015F3C1D //8B ? ? ? ? ? 85 C0 0F 84 ? ? 00 00 2B ? 0F 89 ? ? ? ? C7 ? ? 00 00 00 00 8D
-//backtrack from jmp above
-]])
-UDF1.ddStatusLabel2.Caption="Mob Disarm: Enabled"
-UDF1.ddStatusLabel2.Font.Color=0x00ff00
-elseif sender.State == 0 then
-autoAssemble([[
-015F3651:
-db 75 0A 8D 50 FA
-mov ecx, edi
-call 01655C00 //update call as well
-]])
-UDF1.ddStatusLabel2.Caption="Mob Disarm: Disabled"
-UDF1.ddStatusLabel2.Font.Color=0x0000ff
+	if sender.State == 1 then
+		autoAssemble([[
+		015F3651: //75 ? 8D ? ? 8B ? E8 ? ? ? ? 8B ? E8 ? ? ? ? 85 ? 0F 84 ? ? ? ? 8B
+		jmp 015F3C1D //8B ? ? ? ? ? 85 C0 0F 84 ? ? 00 00 2B ? 0F 89 ? ? ? ? C7 ? ? 00 00 00 00 8D
+		//backtrack from jmp above
+		]])
+		UDF1.ddStatusLabel2.Caption="Mob Disarm: Enabled"
+		UDF1.ddStatusLabel2.Font.Color=0x00ff00
+	elseif sender.State == 0 then
+		autoAssemble([[
+		015F3651:
+		db 75 0A 8D 50 FA
+		mov ecx, edi
+		call 01655C00 //update call as well
+		]])
+		UDF1.ddStatusLabel2.Caption="Mob Disarm: Disabled"
+		UDF1.ddStatusLabel2.Font.Color=0x0000ff
+	end
 end
-end
+--Settings end
 
-function chuBtnBackClick(sender)
-Teleport(1400,0)
-end
-function chuBtnHoofClick(sender)
-Teleport(150, -360)
-end
-function chuBtnManeClick(sender)
-Teleport(-920, -360)
-end
-function chuBtnFinClick(sender)
-Teleport(-1130, -850)
-end
-function chuBtnPeelClick(sender)
-Teleport(2650, -350)
-end
-function chuBtnPawClick(sender)
-Teleport(3770, -350)
-end
-function chuBtnShellClick(sender)
-Teleport(3900, -850)
-end
-function chuBtnFeatherClick(sender)
-Teleport(1420, -800)
-end
-function chuBtnClawClick(sender)
-Teleport(1420, -1640)
-end
-function ddBtnCenterClick(sender)
-Teleport(815, -460)
-end
-function ddBtnTopClick(sender)
-Teleport(800, -1970)
-end
-function ddBtnRightClick(sender)
-Teleport(3060, -240)
-end
-function ddBtnBottomClick(sender)
-Teleport(845, 1480)
-end
-function ddBtnLeftClick(sender)
-Teleport(-1455, -240)
-end
+--Disable hacks on window close
 function closingClean()
-if UDF1.sshSet2.State == 1 then
-autoAssemble([[
-026AC967: // CVecCtrlMob::WorkUpdateActive: E9 ? ? ? ? 8B ? ? ? 00 00 83 ? ? 0F ? ? ? ? ? FF [Address below]
-mov eax,[edi+000004D0]
+	if UDF1.sshSet2.State == 1 then
+		autoAssemble([[
+		026AC967: // CVecCtrlMob::WorkUpdateActive: E9 ? ? ? ? 8B ? ? ? 00 00 83 ? ? 0F ? ? ? ? ? FF [Address below]
+		mov eax,[edi+000004D0]
 
-dealloc(MobControl)
-]])
-end
-if UDF1.chuSet2.State == 1 then
-autoAssemble([[
-026A7A50: //55 8B EC 6A FF 68 ? ? ? ? 64 A1 00 00 00 00 50 83 EC ? 56 57 A1 ? ? ? ? 33 C5 50 8D ? ? 64 A3 00 00 00 00 8B F9 89 ? ? 8B ? FF
-push ebp
-mov ebp,esp
-push -01
+		dealloc(MobControl)
+		]])
+	end
+	if UDF1.chuSet2.State == 1 then
+		autoAssemble([[
+		026A7A50: //55 8B EC 6A FF 68 ? ? ? ? 64 A1 00 00 00 00 50 83 EC ? 56 57 A1 ? ? ? ? 33 C5 50 8D ? ? 64 A3 00 00 00 00 8B F9 89 ? ? 8B ? FF
+		push ebp
+		mov ebp,esp
+		push -01
 
-dealloc(Aggro)
-]])
-end
-if UDF1.ddSet2.State == 1 then
-autoAssemble([[
-0165FD3D:
-call 0080F250
+		dealloc(Aggro)
+		]])
+	end
+	if UDF1.ddSet2.State == 1 then
+		autoAssemble([[
+		0165FD3D:
+		call 0080F250
 
-0165F490:
-call 0165D4E0
+		0165F490:
+		call 0165D4E0
 
-dealloc(ReceiveMobList__StoreBlackListMobs)
-dealloc(StoreBlackListMobs)
-dealloc(BlackListMobs)
-]])
+		dealloc(ReceiveMobList__StoreBlackListMobs)
+		dealloc(StoreBlackListMobs)
+		dealloc(BlackListMobs)
+		]])
+	end
 end
-end
+
+--Hotkeys
 function destroyHotkeys(which)
-hk0.destroy()
-hk1.destroy()
-hk2.destroy()
-hk3.destroy()
-hk4.destroy()
-if which == "chu" or which == "ssh" then
-hk5.destroy()
-hk6.destroy()
-hk7.destroy()
-hk8.destroy()
+	hk0.destroy()
+	hk1.destroy()
+	hk2.destroy()
+	hk3.destroy()
+	hk4.destroy()
+	if which == "chu" or which == "ssh" then
+		hk5.destroy()
+		hk6.destroy()
+		hk7.destroy()
+		hk8.destroy()
+	end
+	if which == "ssh" then
+		hk9.destroy()
+		hk10.destroy()
+		hk11.destroy()
+		hk12.destroy()
+	end
 end
-if which == "ssh" then
-hk9.destroy()
-hk10.destroy()
-hk11.destroy()
-hk12.destroy()
-end
-end
+
 function createHotkeys(which)
-if which == "ssh" then
-hk0 = createHotkey(ssTeleportBack, VK_B)
-hk1 = createHotkey(ssTeleport1, VK_F1)
-hk2 = createHotkey(ssTeleport2, VK_F2)
-hk3 = createHotkey(ssTeleport3, VK_F3)
-hk4 = createHotkey(ssTeleport4, VK_F4)
-hk5 = createHotkey(ssTeleport5, VK_F5)
-hk6 = createHotkey(ssTeleport6, VK_F6)
-hk7 = createHotkey(ssTeleport7, VK_F7)
-hk8 = createHotkey(ssTeleport8, VK_F8)
-hk9 = createHotkey(ssTeleport9, VK_F9)
-hk10 = createHotkey(ssTeleport10, VK_F10)
-hk11 = createHotkey(ssTeleport11, VK_F11)
-hk12 = createHotkey(ssTeleport12, VK_F12)
-elseif which == "chu" then
-hk0 = createHotkey(chuBtnBackClick, VK_B)
-hk1 = createHotkey(chuBtnHoofClick, VK_F1)
-hk2 = createHotkey(chuBtnPeelClick, VK_F2)
-hk3 = createHotkey(chuBtnManeClick, VK_F3)
-hk4 = createHotkey(chuBtnPawClick, VK_F4)
-hk5 = createHotkey(chuBtnFinClick, VK_F5)
-hk6 = createHotkey(chuBtnShellClick, VK_F6)
-hk7 = createHotkey(chuBtnFeatherClick, VK_F7)
-hk8 = createHotkey(chuBtnClawClick, VK_F8)
-else
-hk0 = createHotkey(ddBtnCenterClick, VK_B)
-hk1 = createHotkey(ddBtnTopClick, VK_F1)
-hk2 = createHotkey(ddBtnRightClick, VK_F2)
-hk3 = createHotkey(ddBtnBottomClick, VK_F3)
-hk4 = createHotkey(ddBtnLeftClick, VK_F4)
+	if which == "ssh" then
+		hk0 = createHotkey(ssTeleportBack, VK_B)
+		hk1 = createHotkey(ssTeleport1, VK_F1)
+		hk2 = createHotkey(ssTeleport2, VK_F2)
+		hk3 = createHotkey(ssTeleport3, VK_F3)
+		hk4 = createHotkey(ssTeleport4, VK_F4)
+		hk5 = createHotkey(ssTeleport5, VK_F5)
+		hk6 = createHotkey(ssTeleport6, VK_F6)
+		hk7 = createHotkey(ssTeleport7, VK_F7)
+		hk8 = createHotkey(ssTeleport8, VK_F8)
+		hk9 = createHotkey(ssTeleport9, VK_F9)
+		hk10 = createHotkey(ssTeleport10, VK_F10)
+		hk11 = createHotkey(ssTeleport11, VK_F11)
+		hk12 = createHotkey(ssTeleport12, VK_F12)
+	elseif which == "chu" then
+		hk0 = createHotkey(chuBtnBackClick, VK_B)
+		hk1 = createHotkey(chuBtnHoofClick, VK_F1)
+		hk2 = createHotkey(chuBtnPeelClick, VK_F2)
+		hk3 = createHotkey(chuBtnManeClick, VK_F3)
+		hk4 = createHotkey(chuBtnPawClick, VK_F4)
+		hk5 = createHotkey(chuBtnFinClick, VK_F5)
+		hk6 = createHotkey(chuBtnShellClick, VK_F6)
+		hk7 = createHotkey(chuBtnFeatherClick, VK_F7)
+		hk8 = createHotkey(chuBtnClawClick, VK_F8)
+	else
+		hk0 = createHotkey(ddBtnCenterClick, VK_B)
+		hk1 = createHotkey(ddBtnTopClick, VK_F1)
+		hk2 = createHotkey(ddBtnRightClick, VK_F2)
+		hk3 = createHotkey(ddBtnBottomClick, VK_F3)
+		hk4 = createHotkey(ddBtnLeftClick, VK_F4)
+	end
 end
-end
+
+--Hotkey enable switch
 function hotkeyCheckChange(sender)
-if sender.State == 1 then
-UDF1.hkSsh.Enabled = true
-UDF1.hkChu.Enabled = true
-UDF1.hkDd.Enabled = true
-elseif sender.State == 0 then
-if UDF1.hkSsh.Checked == true then
-destroyHotkeys("ssh")
-UDF1.hkSsh.Checked = false
-elseif UDF1.hkChu.Checked == true then
-destroyHotkeys("chu")
-UDF1.hkChu.Checked = false
-elseif UDF1.hkDd.Checked == true then
-destroyHotkeys("dd")
-UDF1.hkDd.Checked = false
+	if sender.State == 1 then
+		UDF1.hkSsh.Enabled = true
+		UDF1.hkChu.Enabled = true
+		UDF1.hkDd.Enabled = true
+	elseif sender.State == 0 then
+		if UDF1.hkSsh.Checked == true then
+			destroyHotkeys("ssh")
+			UDF1.hkSsh.Checked = false
+		elseif UDF1.hkChu.Checked == true then
+			destroyHotkeys("chu")
+			UDF1.hkChu.Checked = false
+		elseif UDF1.hkDd.Checked == true then
+			destroyHotkeys("dd")
+			UDF1.hkDd.Checked = false
+		end
+		UDF1.hkSsh.Enabled = false
+		UDF1.hkChu.Enabled = false
+		UDF1.hkDd.Enabled = false
+	end
 end
-UDF1.hkSsh.Enabled = false
-UDF1.hkChu.Enabled = false
-UDF1.hkDd.Enabled = false
-end
-end
+
+--Hotkey radio switch
 function hkSshChange(sender)
-if sender.State == 1 then
-createHotkeys("ssh")
-elseif sender.State == 0 then
-destroyHotkeys("ssh")
+	if sender.State == 1 then
+		createHotkeys("ssh")
+	elseif sender.State == 0 then
+		destroyHotkeys("ssh")
+	end
 end
-end
+
 function hkChuChange(sender)
-if sender.State == 1 then
-createHotkeys("chu")
-elseif sender.State == 0 then
-destroyHotkeys("chu")
+	if sender.State == 1 then
+		createHotkeys("chu")
+	elseif sender.State == 0 then
+		destroyHotkeys("chu")
+	end
 end
-end
+
 function hkDdChange(sender)
-if sender.State == 1 then
-createHotkeys("dd")
-elseif sender.State == 0 then
-destroyHotkeys("dd")
+	if sender.State == 1 then
+		createHotkeys("dd")
+	elseif sender.State == 0 then
+		destroyHotkeys("dd")
+	end
 end
-end
+
+--Closing detach
 function close()
 closingClean()
-  closeCE()
-  return caFree
+closeCE()
+return caFree
 end
 </LuaScript>
 </CheatTable>
