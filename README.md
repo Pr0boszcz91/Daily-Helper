@@ -5,3 +5,6 @@ This project is made on cheat engine's compiler and to make use of it you will n
 The program is written in LUA with some Assembler code snippets mixed in.
 
 All of the resources required to compile the program are included in the directory (except cheat engine itself of course).
+
+
+Hey! Sorry, I was just wondering if the GMS Script bank was taken down for some reason? Is there any way I can contact you?
